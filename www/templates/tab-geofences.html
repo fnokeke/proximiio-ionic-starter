@@ -1,0 +1,16 @@
+<ion-view view-title="Geofences" cache-view="false">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-icon-left item-icon-right" collection-repeat="geofence in geofences" type="item-text-wrap">
+
+        <span class="icon ion-ios-information" ng-click="info(geofence)"></span>
+        <h2>{{geofence.name}}</h2>
+        <p>Created: {{ geofence.createdAt | date : 'medium' }}</p>
+        <p>Address: {{ geofence.address }}</p>
+        <p>Radius: {{ geofence.radius }}</p>
+        <i class="icon ion-trash-b" ion-stop-event="click" ng-click="info(geofence)"></i>
+
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

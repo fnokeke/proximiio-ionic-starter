@@ -3,6 +3,29 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy"
+            content="default-src *;
+                 script-src 'self' 'unsafe-inline' 'unsafe-eval'
+                             localhost:*
+                             http://10.144.13.191:*
+                             http://172.20.0.250:*
+                             http://*/livereload.js
+                             https://*.gstatic.com
+                             https://*.googleapis.com
+                             https://*.angularjs.org
+                             ;
+                 style-src  'self' 'unsafe-inline'
+                             localhost:*
+                             https://*.gstatic.com
+                             https://*.googleapis.com
+                             ;
+                 img-src  'self'
+                             data: http://*.mapbox.com
+                             http://*.openstreetmap.org
+                             https://*.gstatic.com
+                             https://*.googleapis.com
+                             ;
+  ">
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -14,8 +37,10 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="https://code.angularjs.org/1.3.9/angular-resource.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
+    <script src="js/ng-cordova.min.js"></script>
     <script src="cordova.js"></script>
 
     <!-- your app's js -->

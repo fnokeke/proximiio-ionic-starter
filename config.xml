@@ -9,15 +9,23 @@
     </author>
   <content src="index.html"/>
   <access origin="*"/>
+  <allow-navigation href="*"/>
+  <allow-navigation href="http://*/*"/>
+  <allow-navigation href="https://*/*"/>
+  <allow-navigation href="data:*"/>
+  <allow-navigation href="http://10.144.13:191:8100"/>
+  <allow-navigation href="http://10.144.22.175:8100"/>
+  <allow-navigation href="http://10.144.13.191:8100"/>
+  <allow-navigation href="http://172.20.0.250:8100"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="android-minSdkVersion" value="18"/>
-  <preference name="android-targetSdkVersion" value="23" />
+  <preference name="android-targetSdkVersion" value="23"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="3000"/>
-  <plugin name="navtureapps-proximiio" spec="https://github.com/proximiio/proximiio-cordova.git" />
+  <plugin name="navtureapps-proximiio" spec="https://github.com/proximiio/proximiio-cordova.git"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

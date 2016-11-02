@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
+angular.module('starter', ['ionic', 'starter.services', 'starter.controllers', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -50,24 +50,35 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
     }
   })
 
+  .state('tab.geofences', {
+    url: '/geofences',
+    views: {
+      'tab-geofences': {
+        templateUrl: 'templates/tab-geofences.html',
+        controller: 'GeofencesCtrl'
+      }
+    }
+  })
+
   .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
+    url: '/chats',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/tab-chats.html',
+        controller: 'ChatsCtrl'
       }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
+    }
+  })
+
+  .state('tab.chat-detail', {
+    url: '/chats/:chatId',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/chat-detail.html',
+        controller: 'ChatDetailCtrl'
       }
-    })
+    }
+  })
 
   .state('tab.account', {
     url: '/account',
