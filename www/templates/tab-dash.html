@@ -1,4 +1,4 @@
-<ion-view view-title="Proximiio Geofence">
+<ion-view view-title="Proximiio Events">
   <ion-content class="padding">
 
     <div class="list">
@@ -34,7 +34,7 @@
       </div>
 
       <ion-list>
-        <ion-item class="item-remove-animate" ng-repeat="event in events | limitTo: 5">
+        <ion-item class="item-remove-animate" ng-repeat="event in events | limitTo: 20">
           <strong> item {{ $index + 1 }}: {{ event.label }}</strong>
           <p>
             {{ event.action }}

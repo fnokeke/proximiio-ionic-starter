@@ -45,13 +45,12 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 
     var positionChangeCallback = function(coords) {
       localStorage.proxilogs += 'positionChangeCallback (' + new Date().toLocaleString() + ");";
-      console.log('positionChangeCallback called');
       $scope.lastPositionLatitude = coords.coordinates.lat;
       $scope.lastPositionLongitude = coords.coordinates.lon;
 
       var title = 'loc changed';
       var text = new Date().toLocaleString();
-      console.log('loc changed', title, text, new Date().toLocaleString());
+      console.log(title, text, new Date().toLocaleString());
 
       $scope.$apply();
     };
@@ -62,8 +61,6 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
       localStorage.proxilogs += 'geofenceTriggerCallback (' + new Date().toLocaleString() + ");";
 
       var action = enter === 1 ? 'enter' : 'exit';
-      // $scope.geostatus = 'Geofence triggered: ' + action + ' ' + geofence.address;
-
       var title = action + ' ' + geofence.address;
       var text = new Date().toLocaleString();
       notify(title, text);
@@ -80,10 +77,28 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
     //
     // part two
     //
+    $scope.clean_up_array = function(array) {
+      var result = [];
+      for (var i = 0; i < array.length; i++) {
+        if (array[i] !== "" && result.indexOf(array[i]) < 0) {
+          result.push(array[i]);
+        }
+      }
+      return result;
+    };
+
     $scope.triggers = localStorage.triggers ? localStorage.triggers.split(';') : [];
+    $scope.triggers = $scope.clean_up_array($scope.triggers);
 
     $scope.load_triggers = function() {
+
+      $ionicLoading.show({
+        template: 'Refreshing local logs...',
+        duration: 2000
+      });
+
       $scope.triggers = localStorage.triggers ? localStorage.triggers.split(';') : [];
+      $scope.triggers = $scope.clean_up_array($scope.triggers);
     };
 
     $scope.should_display_triggers = function() {
@@ -93,21 +108,20 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
     $scope.events = [];
     $scope.load_events = function() {
       $ionicLoading.show({
-        template: 'Loading Events...',
+        template: 'Loading proximiio events...',
         duration: 1000
       });
 
       GeofenceAPI.get_all_events(
         function(events) {
-          console.log('proximi event logs: ', events);
+          console.log('No of events fetched:', events.length);
 
+          $scope.events = [];
           for (var i = 0; i < events.length; i++) {
             var event = events[i];
             if (event.event === 'config-change') { // skip config-change
               continue;
             }
-
-            // console.log(event.data.geofence, ': ', event.event, new Date(event.updatedAt));
 
             $scope.events.push({
               'label': event.data.geofence,
@@ -162,9 +176,8 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
   $scope.refresh = function() {
     GeofenceAPI.get_all_geofences(function(geofences) {
       $scope.geofences = geofences;
-      console.log('view refreshed so hiding...');
       $ionicLoading.hide();
-
+      console.log('No of geofences:', $scope.geofences.length);
     }, function(error) {
       console.log('update geofences error:', error);
     });
