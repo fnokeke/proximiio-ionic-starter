@@ -16,11 +16,18 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
       var counter = localStorage.counter ? parseInt(localStorage.counter) % 20 : 0;
       localStorage.counter = ++counter;
       console.info('alarm details: ', counter, title, text);
+      localStorage.proxilogs += ' notify (alarm id:' + counter + ',' + title + ',' + new Date().toLocaleString() +
+        ");";
+
+      var now = new Date().getTime();
+      var no_of_secondes = 30;
+      var secs_from_now = new Date(now + (1000 * no_of_secondes));
 
       $cordovaLocalNotification.schedule({
-        title: title,
+        title: 'Proximiio: ' + title,
         text: text,
-        id: counter
+        id: counter,
+        at: secs_from_now
       });
     }
 

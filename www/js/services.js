@@ -1,9 +1,6 @@
 angular.module('starter.services', ['ngResource'])
   .factory("Const", function() {
-    var TOKEN =
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImlzcyI6IjgxOTZhMGUwZmExZDQ1ZmJiMDBlZTMyYW' +
-      'YzOWE5ZDRmIiwidHlwZSI6InVzZXIiLCJ1c2VyIjoiT2tla2UgIEZhYmlhbiAiLCJ1c2VyX2lkIjoiMzA0YTY0ZmUtOTJhOS00MzRlLTgxNmQtODU1Y' +
-      'zI4ODNmOWQwIiwidGVuYW50X2lkIjoiMTUwNjk1OTMtOWQzOC00NGYxLTk0NzAtYTE5ZDk1MjVmZjdjIn0.Df8YCVyqEwilrTYtpYYEJJeO0J3rbOpd_FjS-Pnfa-o';
+    var TOKEN = '';
 
     return {
       'PROXIMIIO_TOKEN': TOKEN
@@ -33,14 +30,6 @@ angular.module('starter.services', ['ngResource'])
 
   return $resource('', {}, {
 
-    'get_all_geofences': {
-      method: 'GET',
-      headers: HEADERS,
-      url: BASE_URL + '/core/geofences',
-      timeout: TIMEOUT,
-      isArray: true
-    },
-
     'create_geofence': {
       method: 'POST',
       headers: HEADERS,
@@ -60,6 +49,14 @@ angular.module('starter.services', ['ngResource'])
       headers: HEADERS,
       url: BASE_URL + '/core/geofences/:id',
       timeout: TIMEOUT
+    },
+
+    'get_all_geofences': {
+      method: 'GET',
+      headers: HEADERS,
+      url: BASE_URL + '/core/geofences',
+      timeout: TIMEOUT,
+      isArray: true
     },
 
     'get_all_events': {
